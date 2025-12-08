@@ -20,17 +20,20 @@ struct lemari {
     adrLemari right;
 };
 
-void createTreeL(adrLemari &root);
+void createRootL(adrLemari &root);
+adrLemari createItemRoot(infotype x);
 adrLemari createItemP(infotype x);
-void insertItemP(adrLemari &root, adrLemari p);
+void insertItemAtasan(adrLemari &root, adrLemari p);
+void insertItemBawahan(adrLemari &root, adrLemari p);
+void InsertRoot(adrLemari akar, adrLemari atasan, adrLemari bawahan);
 
-void readPreOrder(adrLemari root);
-void readInOrder(adrLemari root);
-void readPostOrder(adrLemari root);
-void readLevelOrder(adrLemari root, int level);
+void readPreOrderAtasan(adrLemari root);
+void readInOrderAtasan(adrLemari root);
+void readPostOrderBawahan(adrLemari root);
+void readLevelOrderBawahan(adrLemari root, int level);
 int tinggiTree(adrLemari root);
 void urutanLevel(adrLemari root);
-
+void menu(adrLemari root);
 adrLemari searchItemP(adrLemari root, infotype x);
 void updateItemP(adrLemari &root, adrLemari &p);
 void deleteItemP(adrLemari &root, adrLemari &p);
