@@ -9,7 +9,7 @@ struct infotype {
     string kategori;
     string jenis;
     int id;
-    float harga;
+    int harga;
 };
 
 typedef struct lemari *adrLemari;
@@ -21,32 +21,29 @@ struct lemari {
 };
 
 void createRootL(adrLemari &root);
+
 adrLemari createItemRoot(infotype x);
 adrLemari createItemP(infotype x);
-void insertItemAtasan(adrLemari &root, adrLemari p);
-void insertItemBawahan(adrLemari &root, adrLemari p);
-void InsertRoot(adrLemari akar, adrLemari atasan, adrLemari bawahan);
+void insertItemAtasan(adrLemari &atasan, adrLemari p);
+void insertItemBawahan(adrLemari &bawahan, adrLemari p);
+void InsertRoot(adrLemari &akar, adrLemari atasan, adrLemari bawahan);
 
 void readPreOrderAtasan(adrLemari root);
 void readInOrderAtasan(adrLemari root);
 void readPostOrderBawahan(adrLemari root);
 void readLevelOrderBawahan(adrLemari root, int level);
-int tinggiTree(adrLemari root);
 void urutanLevel(adrLemari root);
-void menu(adrLemari root);
-adrLemari searchItemP(adrLemari root, infotype x);
-void updateItemP(adrLemari &root, adrLemari &p);
-void deleteItemP(adrLemari &root, adrLemari &p);
+int tinggiTree(adrLemari root);
 
-
-
+void menu();
+adrLemari searchItemPByid(adrLemari root, int x);
+void updateItemP(adrLemari &root, adrLemari &atasan, adrLemari &bawahan, int p);
+//void deleteItemP(adrLemari &root, adrLemari &p);
+adrLemari findMinNode(adrLemari root);
+adrLemari deleteNode(adrLemari root, int key);
+adrLemari MaxByHargaAtasan(adrLemari root);
+adrLemari MaxByHargaBawahan(adrLemari root);
+void countAtasanWithPreOrder(adrLemari root, int &Count);
+void countBawahanWithPreOrder(adrLemari root, int &Count);
+int countAll(adrLemari atas, adrLemari bawah);
 #endif // THRIFT_H_INCLUDED
-
-// procedure create tree lemari
-// function create node item pakaian
-// procedure insert item berdasarkan kode unik (< 40 atasan; > 40 bawahan)
-// procedure insert data pakaian (kategori: kaos/kemeja/rok/celana; harga: mahal(x > 50.000)/murah( x <= 50.000); model: bermotif/polos/bergaris
-// function menghitung banyak pakaian yang yang memiliki harga mahal untuk kategori tertentu
-// function menampilkan data pakaian yang termahal dari setiap kategori
-// procedure display data tree
-// 
