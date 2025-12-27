@@ -3,10 +3,6 @@
 
 using namespace std;
 
-void createRootL(adrLemari &root){ //membuat root lemari
-    root = nullptr;
-}
-
 adrLemari createItemRoot(infotype x){
     adrLemari p = new lemari;
     p->data.nama = x.nama;
@@ -53,8 +49,6 @@ void insertItemBawahan(adrLemari &bawahan, adrLemari p){
     }
 }
 
-
-
 void InsertRoot(adrLemari &akar, adrLemari atasan, adrLemari bawahan) {
     akar->left = atasan;
     akar->right = bawahan;
@@ -62,12 +56,13 @@ void InsertRoot(adrLemari &akar, adrLemari atasan, adrLemari bawahan) {
 
 void readPreOrderAtasan(adrLemari root){
     if (root != nullptr){
-        cout << "\n--------------------------------------------" << endl;
-        cout << root->data.id << endl;
-        cout << root->data.nama << endl;
-        cout << root->data.kategori << endl;
-        cout << root->data.jenis << endl;
-        cout << root->data.harga << endl;
+        cout << "\n>=========================<" << endl;
+        cout << "ID pakaian: " << root->data.id << endl;
+        cout << "Nama pakaian: " << root->data.nama << endl;
+        cout << "Kategori: " << root->data.kategori << endl;
+        cout << "Jenis pakaian: " << root->data.jenis << endl;
+        cout << "Harga pakaian: " << root->data.harga << endl;
+        cout << endl;
         readPreOrderAtasan(root->left);
         readPreOrderAtasan(root->right);
     }
@@ -76,12 +71,13 @@ void readPreOrderAtasan(adrLemari root){
 void readInOrderAtasan(adrLemari root){
     if (root != nullptr){
         readInOrderAtasan(root->left);
-        cout << "\n--------------------------------------------" << endl;
-        cout << root->data.id << endl;
-        cout << root->data.nama << endl;
-        cout << root->data.kategori << endl;
-        cout << root->data.jenis << endl;
-        cout << root->data.harga << endl;
+        cout << "\n>=========================<" << endl;
+        cout << "ID pakaian: " << root->data.id << endl;
+        cout << "Nama pakaian: " << root->data.nama << endl;
+        cout << "Kategori: " << root->data.kategori << endl;
+        cout << "Jenis pakaian: " << root->data.jenis << endl;
+        cout << "Harga pakaian: " << root->data.harga << endl;
+        cout << endl;
         readInOrderAtasan(root->right);
     }
 }
@@ -89,12 +85,13 @@ void readPostOrderBawahan(adrLemari root){
     if (root != nullptr){
         readPostOrderBawahan(root->left);
         readPostOrderBawahan(root->right);
-        cout << "\n--------------------------------------------" << endl;
-        cout << root->data.id << endl;
-        cout << root->data.nama << endl;
-        cout << root->data.kategori << endl;
-        cout << root->data.jenis << endl;
-        cout << root->data.harga << endl;
+        cout << "\n>=========================<" << endl;
+        cout << "ID pakaian: " << root->data.id << endl;
+        cout << "Nama pakaian: " << root->data.nama << endl;
+        cout << "Kategori: " << root->data.kategori << endl;
+        cout << "Jenis pakaian: " << root->data.jenis << endl;
+        cout << "Harga pakaian: " << root->data.harga << endl;
+        cout << endl;
     }
 }
 
@@ -103,10 +100,12 @@ void readLevelOrderBawahan(adrLemari root, int level){
         return;
     }
     if (level == 1) {
-        cout << "--------------------------------------------" << endl;
-        cout << root->data.id << endl; cout << root->data.nama << endl;
-        cout << root->data.kategori << endl; cout << root->data.jenis << endl;
-        cout << root->data.harga << endl;
+        cout << ">=========================<" << endl;
+        cout << "ID pakaian: " << root->data.id << endl;
+        cout << "Nama pakaian: " << root->data.nama << endl;
+        cout << "Kategori: " << root->data.kategori << endl;
+        cout << "Jenis pakaian: " << root->data.jenis << endl;
+        cout << "Harga pakaian: " << root->data.harga << endl;
         cout << endl;
     } else if (level > 1) {
         readLevelOrderBawahan(root->left, level - 1);
@@ -131,8 +130,11 @@ void urutanLevel(adrLemari root) {
     }
 }
 
-void menu(){
-    cout << "Pilih model display: " << endl;
+int menu(){
+    int pilihan;
+    cout << "[===================================]" << endl;
+    cout << "         Pilih model display" << endl;
+    cout << "[===================================]" << endl;
     cout << "1. Display Atasan dengan Pre-Order \n";
     cout << "2. Display Atasan dengan In-Order \n";
     cout << "3. Display Bawahan dengan Post-Order \n";
@@ -145,6 +147,10 @@ void menu(){
     cout << "10. Total harga item Atasan \n";
     cout << "11. Total harga item Bawahan \n";
     cout << "12. Total harga semua item \n";
+    cout << "0. Keluar \n\n";
+    cout << "Pilih: ";
+    cin >> pilihan;
+    return pilihan;
 }
 
 
@@ -166,73 +172,58 @@ void updateItemP(adrLemari &root, adrLemari &atasan, adrLemari &bawahan, int p){
     adrLemari x;
     x = searchItemPByid(root, p);
     if (x == nullptr){
-        if (p < 80){
-            insertItemAtasan(atasan, x);
-        } else if (p > 80 && p < 160) {
-            insertItemBawahan(bawahan, x);
-        }
+        cout << "\n!!Data tidak ditemukan, update tidak dapat dilakukan!!\n";
     } else {
-        cout << "Data sebelum diupdate: " << endl;
-        cout << "id data: " << x->data.id << endl;
-        cout << "nama data: " << x->data.nama << endl;
-        cout << "kategori data: " << x->data.kategori << endl;
-        cout << "jenis data: " << x->data.jenis << endl;
-        cout << "harga data: " << x->data.harga << endl;
-        cout << "\nAkan diupdate: " << endl;
+        cout << "\nData sebelum diupdate: " << endl;
+        cout << "ID data: " << x->data.id << endl;
+        cout << "Nama data: " << x->data.nama << endl;
+        cout << "Kategori data: " << x->data.kategori << endl;
+        cout << "Jenis data: " << x->data.jenis << endl;
+        cout << "Harga data: " << x->data.harga << endl;
+        cout << "\nAkan diupdate: ";
 
-        cout << "Id data yang akan diupdate: " << x->data.id << endl;
+        cout << "\nId data yang akan diupdate: " << x->data.id << endl;
         cout << "Nama data yang akan diupdate: " << x->data.nama << endl;
         cout << "Kategori data yang akan diupdate: " << x->data.kategori << endl;
         cout << "Update jenis: ";
         cin >> x->data.jenis;
         cout << "Update harga: ";
         cin >> x->data.harga;
+        cout << "==Data telah diupdate==\n\n";
     }
 }
 
 adrLemari deleteNode(adrLemari root, int key) {
     if (root == nullptr) return nullptr;
 
-    // ====== CARI KEY DI SUBTREE =======
     if (key < root->data.id) {
         root->left = deleteNode(root->left, key);
-    }
-    else if (key > root->data.id) {
+    } else if (key > root->data.id) {
         root->right = deleteNode(root->right, key);
-    }
-    else {
-        // ======= NODE DITEMUKAN =======
-
-        // CASE 1: Tanpa child
+    } else {
         if (root->left == nullptr && root->right == nullptr) {
             delete root;
             return nullptr;
         }
-
-        // CASE 2: Satu child kanan
         if (root->left == nullptr) {
             adrLemari temp = root->right;
             delete root;
             return temp;
         }
-
-        // CASE 3: Satu child kiri
         if (root->right == nullptr) {
             adrLemari temp = root->left;
             delete root;
             return temp;
         }
 
-        // CASE 4: Dua child (mirip gaya kamu — sederhana)
         adrLemari temp = root->right;
-        while (temp->left != nullptr)
+        while (temp->left != nullptr) {
             temp = temp->left;
+        }
 
-        // Copy data successor
         root->data = temp->data;
         root->data.id = temp->data.id;
 
-        // Hapus successor
         root->right = deleteNode(root->right, temp->data.id);
     }
 
@@ -246,16 +237,15 @@ adrLemari MaxByHargaAtasan(adrLemari root) {
     if (root == nullptr){
         return nullptr;
     }
-    // cek root (skip root dummy yang tidak punya harga)
     if (root->data.jenis != "root") {
         maxNode = root;
     }
-    // cek kiri
+
     kiri = MaxByHargaAtasan(root->left);
     if (kiri != nullptr && (maxNode == nullptr || kiri->data.harga > maxNode->data.harga)) {
         maxNode = kiri;
     }
-    // cek kanan
+
     kanan = MaxByHargaAtasan(root->right);
     if (kanan != nullptr && (maxNode == nullptr || kanan->data.harga > maxNode->data.harga)) {
         maxNode = kanan;
@@ -272,16 +262,13 @@ adrLemari MaxByHargaBawahan(adrLemari root){
     if (root == nullptr){
         return nullptr;
     }
-    // cek root (skip root dummy yang tidak punya harga)
     if (root->data.jenis != "root") {
         maxNode = root;
     }
-    // cek kiri
     kiri = MaxByHargaBawahan(root->left);
     if (kiri != nullptr && (maxNode == nullptr || kiri->data.harga > maxNode->data.harga)) {
         maxNode = kiri;
     }
-    // cek kanan
     kanan = MaxByHargaBawahan(root->right);
     if (kanan != nullptr && (maxNode == nullptr || kanan->data.harga > maxNode->data.harga)) {
         maxNode = kanan;
@@ -292,7 +279,9 @@ adrLemari MaxByHargaBawahan(adrLemari root){
 
 void countAtasanWithPreOrder(adrLemari root, int &Count){
     if (root != nullptr){
-        Count = Count + root->data.harga;
+        if (root->data.id != 40) {
+            Count += root->data.harga;
+        }
         countAtasanWithPreOrder(root->left, Count);
         countAtasanWithPreOrder(root->right, Count);
     }
@@ -300,15 +289,18 @@ void countAtasanWithPreOrder(adrLemari root, int &Count){
 
 void countBawahanWithPreOrder(adrLemari root, int &Count){
     if (root != nullptr){
-        Count = Count + root->data.harga;
+        if (root->data.id != 120) {
+            Count += root->data.harga;
+        }
         countBawahanWithPreOrder(root->left, Count);
         countBawahanWithPreOrder(root->right, Count);
     }
 }
 
+
 int countAll(adrLemari atas, adrLemari bawah){
-    int total1;
-    int total2;
+    int total1 = 0;
+    int total2 = 0;
     countAtasanWithPreOrder(atas, total1);
     countBawahanWithPreOrder(bawah, total2);
 
