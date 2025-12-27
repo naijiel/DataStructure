@@ -20,8 +20,6 @@ struct lemari {
     adrLemari right;
 };
 
-void createRootL(adrLemari &root);
-
 adrLemari createItemRoot(infotype x);
 adrLemari createItemP(infotype x);
 void insertItemAtasan(adrLemari &atasan, adrLemari p);
@@ -35,11 +33,9 @@ void readLevelOrderBawahan(adrLemari root, int level);
 void urutanLevel(adrLemari root);
 int tinggiTree(adrLemari root);
 
-void menu();
+int menu();
 adrLemari searchItemPByid(adrLemari root, int x);
 void updateItemP(adrLemari &root, adrLemari &atasan, adrLemari &bawahan, int p);
-//void deleteItemP(adrLemari &root, adrLemari &p);
-adrLemari findMinNode(adrLemari root);
 adrLemari deleteNode(adrLemari root, int key);
 adrLemari MaxByHargaAtasan(adrLemari root);
 adrLemari MaxByHargaBawahan(adrLemari root);
